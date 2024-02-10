@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>CRUD DE ESTUDIANTES CON SPRING</h1>
+
+    <h3>Listado de Alumnos</h3>
+
+    
+    <table>
+        <thead>
+                <th>Nombre</th> 
+                <th>Apellidos</th>
+                <th>Genero</th>
+                <th>Fecha Matriculacion</th>
+                <th>Total Asignaturas Matriculadas</th>
+                <th>Foto</th>
+    </thead>
+        <tbody>
+            <tr th:each=" alumno: ${alumnos}">
+                <td th:text="${alumno.nombre}"></td>
+                <td th:text="${alumno.apellidos}"></td>
+                <td th:text="${alumno.genero}"></td>
+                <td th:text="${alumno.fechaMatriculacion}"></td>
+                <td th:text="${alumno.totalAsignaturasMatriculadas}"></td>
+                  
+                <td>
+                    <a th:href="@{/detalles?id=}+${alumno.id}">Detalles</a>
+                </td>
+                </tr>
+            </tr>
+
+        </tbody>
+    </table>
+</body>
+</html>

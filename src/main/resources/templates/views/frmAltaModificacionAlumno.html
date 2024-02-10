@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documen</title>
+</head>
+    <h1>Formulario Alta/Modificacion de Alumno</h1>
+
+<body>
+    <fieldset>
+        <legend>Formulario</legend>
+        <form th:object="${alumno}" th:action="@{/persistir}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <label for="nombre">Nombre: </label>
+            <input type="text" id="nombre" th:field="*{nombre}">
+            <label for="apellidos">Apellidos: </label>
+            <input type="text" id="apellidos" th:field="*{apellidos}">
+            <fieldset>
+                <legend>Genero</legend>
+                <label for="hombre">Hombre</label>
+                <input type="radio" name="genero" id="hombre" value="HOMBRE" th:field="*{genero}">
+                <label for="mujer">Mujer</label>
+                <input type="radio" name="genero" id="mujer" value="MUJER" th:field="*{genero}">
+                <label for="otro">Otro</label>
+                <input type="radio" name="genero" id="otro" value="OTRO" th:field="*{genero}">
+            </fieldset> 
+            <label for="fechaMatriculacion">Fecha Matriculacion: </label>
+            <input type="date" id="fechaMatriculacion" th:field="*{fechaMatriculacion}">
+            <label for="foto">foto: </label>
+            <input type="text" id="foto" th:field="*{foto}">
+           
+            <label for="">Cursos</label>
+            <select name="curso" id="curso">
+                <option></option>
+                <option th:each=" curso: ${cursos}"
+                        th:value="${curso.id}"
+                            th:text="${curso.nombre}"
+                                    th:selected = "${alumno.id != 0 and alumno.curso.id == curso.id }">
+                </option>
+            </select>
+            <label for="telefonos">Telefonos</label>
+            <input type="text" id="telefonos" name="numerosTel"
+                    placeholder="Uno o varios separados por punto y coma"
+                        th:value="${numerosTelefono}">
+            <label for="correos">Correos</label>
+            <input type="text" id="correos" name="direccionesCorreo"
+                    placeholder="Uno o varios separados por punto y coma"
+                        th:value="${direccionesDeCorreo}">
+            <input type="submit" value="Alta/Modificacion">
+        </form>
+    </fieldset>
+</body>
+</html>
+</body>
+</html>
