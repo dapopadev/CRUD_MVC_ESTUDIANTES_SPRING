@@ -13,12 +13,13 @@
     
     <table>
         <thead>
+                <th>Foto</th>
                 <th>Nombre</th> 
                 <th>Apellidos</th>
                 <th>Genero</th>
                 <th>Fecha Matriculacion</th>
                 <th>Total Asignaturas Matriculadas</th>
-                <th>Foto</th>
+                
     </thead>
         <tbody>
             <tr th:each=" alumno: ${alumnos}">
@@ -26,12 +27,9 @@
                 <td th:text="${alumno.apellidos}"></td>
                 <td th:text="${alumno.genero}"></td>
                 <td th:text="${alumno.fechaMatriculacion}"></td>
-                <td th:text="${alumno.totalAsignaturasMatriculadas}"></td>
+                <td th:text="${alumno.totalAsigMatr}"></td>
                   
-                <td>
-                    <a th:href="@{/detalles?id=}+${alumno.id}">Detalles</a>
-                </td>
-                </tr>
+
             </tr>
 
         </tbody>
