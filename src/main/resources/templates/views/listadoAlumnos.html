@@ -13,12 +13,12 @@
     
     <table>
         <thead>
-                <th>Foto</th>
+               
                 <th>Nombre</th> 
                 <th>Apellidos</th>
                 <th>Genero</th>
-                <th>Fecha Matriculacion</th>
-                <th>Total Asignaturas Matriculadas</th>
+                <th>Fecha Matriculación</th>
+                <th>Total Asignaturas</th>
                 
     </thead>
         <tbody>
@@ -28,8 +28,11 @@
                 <td th:text="${alumno.genero}"></td>
                 <td th:text="${alumno.fechaMatriculacion}"></td>
                 <td th:text="${alumno.totalAsigMatr}"></td>
-                  
-
+                 
+                <td>
+                <a th:href="@{/actualizar/}+${alumno.id}">Actualizar</a>
+                <a th:href="@{/eliminar/}+${alumno.id}">Borrar</a>
+                </td>
             </tr>
 
         </tbody>
