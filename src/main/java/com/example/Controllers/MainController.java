@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.Entities.Alumno;
 import com.example.Entities.Correo;
+import com.example.Entities.Curso;
 import com.example.Entities.Telefono;
 import com.example.Services.AlumnoService;
 import com.example.Services.CursoService;
@@ -42,8 +45,8 @@ public class MainController {
     
         }
 
-    //Punto 5. Metodo para formulario de alta/Matriculacion
-    @GetMapping("/frmAltaModificacion")
+    //Punto 5. Metodo para formulario de alta/Modificación
+    @GetMapping("/frmAltaModificacionAlumno")
     
     public String formularioAltaModificacionAlumno(Model model) {
 
@@ -60,7 +63,7 @@ public class MainController {
 
     @PostMapping("/persistir")
     @Transactional
-    public String persistirAlumno(@ModelAttribute(name = "empleado")Alumno empleado,
+    public String persistirAlumno(@ModelAttribute(name = "alumno")Alumno alumno,
         @RequestParam(name = "numerosTel", required = false) String telefonosRecibidos,
         @RequestParam(name = "direccionesCorreo", required = false) String correosRecibidos) {
 
@@ -104,6 +107,37 @@ public class MainController {
         return "redirect:/all";
     }
 
+
+    @GetMapping("/actualizar/{id}")
+    @Transactional
+    public String actualizarAlumno(@PathVariable(name = "id", required = true)int idAlumno, 
+                                        Model model) {
+        
+        Alumno alumno = alumnoService.dameUnAlumno(idAlumno);
+        model.addAttribute("alumno", alumno);
+        
+        List<Curso> cursos = cursoService.dameCursos();
+        model.addAttribute("cursos", cursos);
+        
+        if(alumno.getTelefonos() != null) {
+            String numerosTelefono = alumno.getTelefonos().stream()
+                        .map(Telefono::getNumero)
+                        .collect(Collectors.joining(";"));
+            model.addAttribute("numerosTelefono", numerosTelefono);
+        }
+
+        if(alumno.getCorreos() != null) {
+        String direccionesDeCorreo = alumno.getCorreos().stream()
+                    .map(Correo::getCorreo)
+                    .collect(Collectors.joining(";"));
+        model.addAttribute("direccionesDeCorreo", direccionesDeCorreo);
+    }
+
+        return "views/frmAltaModificacionAlumno";
+    }
+
+
+
     //Punto 6. Metodo para eliminar alumno
     @GetMapping("/eliminar/{id}")
     @Transactional
@@ -112,5 +146,5 @@ public class MainController {
 
             return "redirect:/all";
     }
- }
+  }
 

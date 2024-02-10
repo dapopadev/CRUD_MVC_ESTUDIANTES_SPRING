@@ -27,6 +27,8 @@
             </fieldset> 
             <label for="fechaMatriculacion">Fecha Matriculacion: </label>
             <input type="date" id="fechaMatriculacion" th:field="*{fechaMatriculacion}">
+            <label for="totalAsigMatr">Total Asignaturas matriculadas: </label>
+            <input type="text" id="totalAsigMatr" th:field="*{totalAsigMatr}">
             <label for="foto">foto: </label>
             <input type="text" id="foto" th:field="*{foto}">
            
@@ -35,7 +37,7 @@
                 <option></option>
                 <option th:each=" curso: ${cursos}"
                         th:value="${curso.id}"
-                            th:text="${curso.nombre}"
+                            th:text="${curso.descripcion}"
                                     th:selected = "${alumno.id != 0 and alumno.curso.id == curso.id }">
                 </option>
             </select>

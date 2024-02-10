@@ -1,14 +1,9 @@
 package com.example.Services;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import com.example.Dao.AlumnoDao;
 import com.example.Dao.TelefonoDao;
-import com.example.Entities.Alumno;
 import com.example.Entities.Telefono;
-
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
