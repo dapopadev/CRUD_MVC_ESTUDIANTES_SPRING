@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.Entities.Alumno;
 import com.example.Entities.Correo;
 import com.example.Entities.Curso;
+import com.example.Entities.Horario;
 import com.example.Entities.Telefono;
 import com.example.Services.AlumnoService;
 import com.example.Services.CursoService;
@@ -60,7 +61,7 @@ public class MainController {
 
         return "views/frmAltaModificacionAlumno";
     }
-
+    
     @PostMapping("/persistir")
     @Transactional
     public String persistirAlumno(@ModelAttribute(name = "alumno")Alumno alumno,
@@ -107,7 +108,16 @@ public class MainController {
         return "redirect:/all";
     }
 
+     //Punto 6. Metodo para eliminar alumno
+     @GetMapping("/eliminar/{id}")
+     @Transactional
+     public String eliminarAlumno(@PathVariable(name = "id", required = true) int idAlumno) {
+                                     alumnoService.eliminarAlumno(idAlumno);
+ 
+             return "redirect:/all";
+     }
 
+    //Punto 7.Actualizar un alumno
     @GetMapping("/actualizar/{id}")
     @Transactional
     public String actualizarAlumno(@PathVariable(name = "id", required = true)int idAlumno, 
@@ -136,15 +146,20 @@ public class MainController {
         return "views/frmAltaModificacionAlumno";
     }
 
+    //Punto 8.Mostrar con link en vista alumnos matriculados en horario diurno
 
+    @GetMapping("/listadoAlumnosDiurno")
+    public String alumnosDiurno(Model model) {
+        List<Alumno> todosLosAlumnos = alumnoService.dameTodosLosAlumnos();
+        List<Alumno> alumnosDiurno = todosLosAlumnos.stream()
+                                .filter(alumno -> alumno.getCurso().getHorario()==Horario.DIURNO)
+                                .collect(Collectors.toList());
 
-    //Punto 6. Metodo para eliminar alumno
-    @GetMapping("/eliminar/{id}")
-    @Transactional
-    public String eliminarAlumno(@PathVariable(name = "id", required = true) int idAlumno) {
-                                    alumnoService.eliminarAlumno(idAlumno);
-
-            return "redirect:/all";
+        model.addAttribute("alumnosDiurno", alumnosDiurno);
+        return "views/listadoAlumnosDiurno";
     }
+
+    //Punto 9.Mostrar con link en vista alumnos agrupados por curso
+   
   }
 
