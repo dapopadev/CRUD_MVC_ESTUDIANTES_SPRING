@@ -184,7 +184,7 @@ public class MainController {
     public String alumnosDiurno(Model model) {
         List<Alumno> todosLosAlumnos = alumnoService.dameTodosLosAlumnos();
         List<Alumno> alumnosDiurno = todosLosAlumnos.stream()
-                                .filter(alumno -> alumno.getCurso().getHorario()==Horario.DIURNO)
+                                .filter(alumno -> alumno.getCurso().getHorario() == Horario.DIURNO)
                                 .collect(Collectors.toList());
 
         model.addAttribute("alumnosDiurno", alumnosDiurno);

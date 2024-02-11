@@ -11,10 +11,9 @@
     <fieldset enctype="multipart/form-data">
         <legend>Formulario</legend>
         
-        <form th:object="${alumno}" th:action="@{/persistir}" method="post">
-        
-            <img th:src="@{/images/} + ${alumno.foto}" th:alt="'Imagen del alumno : ' + ${alumno.nombre}" width="80px" height="100%"><br>
-        
+        <form th:object="${alumno}" th:action="@{/persistir}" method="post" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}">
+           
             <label for="nombre">Nombre: </label>
             <input type="text" id="nombre" th:field="*{nombre}">
             <label for="apellidos">Apellidos: </label>

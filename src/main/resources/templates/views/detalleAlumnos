@@ -7,13 +7,12 @@
     </head>
     <body>
         <h1 th:text="'Detalles del alumno: ' + ${alumno.nombre}"></h1>
-    </body>
 
     <h3 th:text="${alumno.foto}"></h3>
     <img th:src="@{/images/}+${alumno.foto}" 
-        alt="'Imagen del alumno ' + ${alumno.nombre}">
-
+        th:alt="'Imagen del alumno ' + ${alumno.nombre}">
+    
     <p>Total de asignaturas matriculadas:</p>
     <p th:text="${alumno.totalAsignaturas}"></p>
-
+    </body>
 </html>
