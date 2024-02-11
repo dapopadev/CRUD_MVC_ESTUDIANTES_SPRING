@@ -82,7 +82,7 @@ public class CrudMvcEstudiantesSpringApplication implements CommandLineRunner{
 				.fechaMatriculacion(LocalDate.of(2023, Month.SEPTEMBER, 15))
 				.totalAsigMatr(6)
 				.curso(cursoService.dameUnCurso(4))
-				.foto("")
+				.foto("imagen1.jpg")
 				.build();
 
 		
@@ -93,7 +93,7 @@ public class CrudMvcEstudiantesSpringApplication implements CommandLineRunner{
 				.fechaMatriculacion(LocalDate.of(2022, Month.APRIL, 05))
 				.totalAsigMatr(8)
 				.curso(cursoService.dameUnCurso(2))
-				.foto("")
+				.foto("imagen2.jpg")
 				.build();
 
 		Alumno alumno3 = Alumno.builder()
@@ -103,7 +103,7 @@ public class CrudMvcEstudiantesSpringApplication implements CommandLineRunner{
 				.fechaMatriculacion(LocalDate.of(2021, Month.JANUARY, 25))
 				.totalAsigMatr(4)
 				.curso(cursoService.dameUnCurso(1))
-				.foto("")
+				.foto("imagen3.jpg")
 				.build();
 					
 		Alumno alumno4 = Alumno.builder()
@@ -113,7 +113,7 @@ public class CrudMvcEstudiantesSpringApplication implements CommandLineRunner{
 				.fechaMatriculacion(LocalDate.of(2022, Month.APRIL, 05))
 				.totalAsigMatr(8)
 				.curso(cursoService.dameUnCurso(3))
-				.foto("")
+				.foto("imagen4.jpg")
 				.build();
 
 		Alumno alumno5 = Alumno.builder()
@@ -123,7 +123,7 @@ public class CrudMvcEstudiantesSpringApplication implements CommandLineRunner{
 				.fechaMatriculacion(LocalDate.of(2018, Month.AUGUST, 10))
 				.totalAsigMatr(8)
 				.curso(cursoService.dameUnCurso(1))
-				.foto("")
+				.foto("imagen5.jpg")
 				.build();
 
 		Alumno alumno6 = Alumno.builder()
@@ -133,7 +133,7 @@ public class CrudMvcEstudiantesSpringApplication implements CommandLineRunner{
 				.fechaMatriculacion(LocalDate.of(2024, Month.JANUARY, 05))
 				.totalAsigMatr(8)
 				.curso(cursoService.dameUnCurso(4))
-				.foto("")
+				.foto("imagen6.jpg")
 				.build();
 
 		Alumno alumno7 = Alumno.builder()
@@ -143,7 +143,7 @@ public class CrudMvcEstudiantesSpringApplication implements CommandLineRunner{
 				.fechaMatriculacion(LocalDate.of(2022, Month.NOVEMBER, 14))
 				.totalAsigMatr(8)
 				.curso(cursoService.dameUnCurso(2))
-				.foto("")
+				.foto("imagen7.jpg")
 				.build();
 
 		Alumno alumno8 = Alumno.builder()
@@ -153,7 +153,7 @@ public class CrudMvcEstudiantesSpringApplication implements CommandLineRunner{
 				.fechaMatriculacion(LocalDate.of(2021, Month.DECEMBER, 14))
 				.totalAsigMatr(8)
 				.curso(cursoService.dameUnCurso(3))
-				.foto("")
+				.foto("imagen8.jpg")
 				.build();		
 
 	

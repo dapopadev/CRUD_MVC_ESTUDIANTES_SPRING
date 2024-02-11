@@ -1,7 +1,11 @@
 package com.example.Controllers;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -9,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.Entities.Alumno;
 import com.example.Entities.Correo;
@@ -66,7 +71,34 @@ public class MainController {
     @Transactional
     public String persistirAlumno(@ModelAttribute(name = "alumno")Alumno alumno,
         @RequestParam(name = "numerosTel", required = false) String telefonosRecibidos,
-        @RequestParam(name = "direccionesCorreo", required = false) String correosRecibidos) {
+        @RequestParam(name = "direccionesCorreo", required = false) String correosRecibidos,
+        @RequestParam(name = "file", required = false) MultipartFile imagen) {  
+
+            if(!imagen.isEmpty()) {
+
+                
+                Path imageFolder = Path.of("src/main/resources/static/images"); 
+
+              
+                Path rutaAbsoluta = imageFolder.toAbsolutePath();
+
+               
+                Path rutaCompleta = Path.of(rutaAbsoluta + "/" + imagen.getOriginalFilename());
+
+
+                try {
+
+                    byte[] baytesImage = imagen.getBytes();
+                    Files.write(rutaCompleta, baytesImage);
+
+                    
+                    alumno.setFoto(imagen.getOriginalFilename());
+
+
+                } catch (IOException e) {
+                    // TODO: handle exception
+                }
+            }
 
     if(telefonosRecibidos != null) {
         String[] arrayTelefonos = telefonosRecibidos.split(";");
@@ -160,6 +192,18 @@ public class MainController {
     }
 
     //Punto 9.Mostrar con link en vista alumnos agrupados por curso
+
+    @GetMapping("/listadoAlumnosPorCurso")
+        public String alumnosPorCurso (Model model) {
+            List<Alumno>todosLosAlumnos = alumnoService.dameTodosLosAlumnos();
+            Map<Curso, List<Alumno>> listadoAlumnosCurso = todosLosAlumnos.stream()
+                                    .collect(Collectors.groupingBy(Alumno::getCurso));
+
+            model.addAttribute("listadoAlumnosCurso", listadoAlumnosCurso);
+
+
+            return "views/listadoAlumnosPorCurso";
+        }
    
   }
 

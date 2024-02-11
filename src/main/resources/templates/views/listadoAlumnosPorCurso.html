@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alumnos por curso</title>
+</head>
+<body>
+    
+
+    <h1>Listado de alumnos clasificados por curso</h1>
+
+    
+    <table th:each="entry : ${listadoAlumnosPorCurso}">
+        <h2 th:text="'Alumnos matriculados en ' + ${entry.key.descripcion}"></h2>
+        <thead>
+            <tr>
+                <th>Foto</th>
+                <th>Nombre </th>
+                <th>Apellidos </th>
+            </tr>
+        </thead>
+
+        <tbody th:each="alumno : ${entry.value}">
+
+                    <td> 
+                             <img th:src="@{/images/} + ${alumno.foto}" th:alt="'Imagen del alumno : ' + ${alumno.nombre}" width="50px" height="100%">
+                    </td>
+                    <td th:text="${alumno.nombre}"></td>
+                    <td th:text="${alumno.apellidos}"></td>
+                
+        </tbody>
+    </table>
+</body>
+</html>

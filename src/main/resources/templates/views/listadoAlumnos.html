@@ -11,9 +11,9 @@
     <h3>Listado de Alumnos</h3>
 
     
-    <table>
+    <table enctype="multipart/form-data">
         <thead>
-               
+                <th>Foto</th>
                 <th>Nombre</th> 
                 <th>Apellidos</th>
                 <th>Genero</th>
@@ -23,6 +23,11 @@
     </thead>
         <tbody>
             <tr th:each=" alumno: ${alumnos}">
+                <tr th:each=" alumno : ${alumnos}">
+                    <td>
+                        <img th:src="@{/images/} + ${alumno.foto}" th:alt="'Imagen del alumno : ' + ${alumno.nombre}" width="50px" height="100%">
+                    </td>
+                
                 <td th:text="${alumno.nombre}"></td>
                 <td th:text="${alumno.apellidos}"></td>
                 <td th:text="${alumno.genero}"></td>
@@ -38,8 +43,8 @@
         </tbody>
     </table>
     <div>
-        <a th:href="@{/frmAltaModificacionAlumno}">Formulario de Alta de Alumnos</a>
-        <a th:href="@{/listadoAlumnosDiurno}">Listado Alumnos diurno</a>
+        <a th:href="@{/frmAltaModificacionAlumno}">Formulario de Alta de Alumnos</a><br>
+        <a th:href="@{/listadoAlumnosDiurno}">Listado Alumnos diurno</a><br>
         <a th:href="@{/listadoAlumnosPorCurso}">Listado Alumnos agrupados por curso</a>
     </div>
 </body>

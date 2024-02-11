@@ -8,10 +8,13 @@
     <h1>Formulario Alta/Modificacion de Alumno</h1>
 
 <body>
-    <fieldset>
+    <fieldset enctype="multipart/form-data">
         <legend>Formulario</legend>
+        
         <form th:object="${alumno}" th:action="@{/persistir}" method="post">
-            <input type="hidden" th:field="*{id}">
+        
+            <img th:src="@{/images/} + ${alumno.foto}" th:alt="'Imagen del alumno : ' + ${alumno.nombre}" width="80px" height="100%"><br>
+        
             <label for="nombre">Nombre: </label>
             <input type="text" id="nombre" th:field="*{nombre}">
             <label for="apellidos">Apellidos: </label>
@@ -29,9 +32,6 @@
             <input type="date" id="fechaMatriculacion" th:field="*{fechaMatriculacion}">
             <label for="totalAsigMatr">Total Asignaturas matriculadas: </label>
             <input type="text" id="totalAsigMatr" th:field="*{totalAsigMatr}">
-            <label for="foto">foto: </label>
-            <input type="text" id="foto" th:field="*{foto}">
-           
             <label for="">Cursos</label>
             <select name="curso" id="curso">
                 <option></option>
@@ -49,7 +49,8 @@
             <input type="text" id="correos" name="direccionesCorreo"
                     placeholder="Uno o varios separados por punto y coma"
                         th:value="${direccionesDeCorreo}">
-            <input type="submit" value="Alta/Modificacion">
+             <input type="file" name="file">
+             <input type="submit" value="Alta/Modificacion">
         </form>
     </fieldset>
 </body>

@@ -20,11 +20,14 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "alumno")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -47,6 +50,9 @@ public class Alumno implements Serializable {
     private Genero genero;
 
     private int totalAsigMatr;
+    
+    //Nombre de la foto, porque el contenido se almacenara en el sist de archivos(file system),
+    //en prinicipio en la carpeta static directamente, o dentro de una carpeta que este en static 
     private String foto;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)

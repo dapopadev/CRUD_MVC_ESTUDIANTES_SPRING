@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/styles.css">
-    <title>Turno de mañana</title>
+ 
+    <title>Diurno</title>
 </head>
 <body>
 
@@ -22,12 +22,13 @@
         </thead>
 
         <tbody>
-            <tr th:each=" alumno : ${alumnosDiurno}">
+            <tr th:each=" alumno : ${listadoAlumnosDiurno}">
                 <td> 
-                    <img th:src="@{/images/} + ${alumno.foto}" th:alt="'Imagen del alumno : ' + ${alumno.nombre}" width="50px" height="100%">
+                    <img th:src="@{/images/} + ${alumno.foto}" th:alt="'Imagen del alumno : ' + ${alumno.nombre}" width="50px" height="100%">  
                 </td>
                 <td th:text="${alumno.nombre}"></td>
                 <td th:text="${alumno.apellidos}"></td>
+                <td th:text="${alumno.curso.descripcion}"></td>
                 
                 
             </tr>
